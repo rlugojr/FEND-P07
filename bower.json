@@ -1,0 +1,12 @@
+{
+  "name": "fend-p07",
+  "description": "Submission for Front-End Developer Project 7.",
+  "main": "index.html",
+  "authors": [
+    "Ray Lugo",
+    "Jr."
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}

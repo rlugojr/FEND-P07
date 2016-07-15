@@ -1,0 +1,14 @@
+{
+  "name": "fend-p07",
+  "version": "1.0.0",
+  "description": "Submission for Front-End Developer Project 7.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ray Lugo, Jr.",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp-google-cdn": "^2.1.0"
+  }
+}

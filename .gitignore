@@ -1,3 +1,9 @@
+# =========================
+# Operating System Files
+# =========================
+# MS Windows
+# =========================
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -18,30 +24,16 @@ $RECYCLE.BIN/
 *.lnk
 
 # =========================
-# Operating System Files
+# Project Folder Exclusions
 # =========================
 
-# OSX
+# Bower Components
 # =========================
+bower_components
 
-.DS_Store
-.AppleDouble
-.LSOverride
+#Gulp Module
+# =========================
+node_modules
 
-# Thumbnails
-._*
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
