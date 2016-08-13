@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,22 +8,195 @@
         <meta name="author" content="Ray Lugo, Jr.">
 
         <title>My Nav Points</title>
-        <link rel="stylesheet" href="css/style.css" media="screen"/>
-        <link rel="stylesheet" href="css/print.css" media="print"/>
-        <link async rel="stylesheet" href="css/fonts.css" media="data"/>
+        <link rel="stylesheet" href="css/style.css" media="screen" />
+        <!--<link rel="stylesheet" href="css/print.css" media="print"/>
+        <link async rel="stylesheet" href="css/fonts.css" media="data"/>-->
     </head>
+
     <body>
-    
+        <div class="container">
+            <div class="options-box">
+                <h1>Find a Home in NYC</h1>
+                <div>
+                    <input id="show-listings" type="button" value="Show Listings">
+                    <input id="hide-listings" type="button" value="Hide Listings">
+                </div>
+            </div>
+            <div id="map"></div>
+        </div>
+        <script>
+            var map;
+
+            var markers = [];
+
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {
+                        lat: 40.755781,
+                        lng: -73.987548
+                    },
+                    zoom: 15
+                });
+                var locations = [{
+                    title: 'Times Square',
+                    location: {
+                        lat: 40.755781,
+                        lng: -73.987548
+                    }
+                }, {
+                    title: 'Port Authority Bus Terminal',
+                    location: {
+                        lat: 40.757429,
+                        lng: -73.989934
+                    }
+                }, {
+                    title: 'NY Penn Station',
+                    location: {
+                        lat: 40.750303,
+                        lng: -73.990906
+                    }
+                }, {
+                    title: '42nd Street Tourist Area',
+                    location: {
+                        lat: 40.756668,
+                        lng: -73.98846
+                    }
+                }, {
+                    title: 'Theater District',
+                    location: {
+                        lat: 40.748441,
+                        lng: -73.985664
+                    }
+                }, {
+                    title: 'Empire State Building',
+                    location: {
+                        lat: 40.748441,
+                        lng: -73.985664
+                    }
+                }, {
+                    title: 'United Nations HQ',
+                    location: {
+                        lat: 40.749423,
+                        lng: -73.968051
+                    }
+                }, {
+                    title: 'American Museum of Natural History',
+                    location: {
+                        lat: 40.781324,
+                        lng: -73.973988
+                    }
+                }, {
+                    title: 'The Museum of Modern Art',
+                    location: {
+                        lat: 40.761417,
+                        lng: -73.97712
+                    }
+                }, {
+                    title: 'Grand Central Station',
+                    location: {
+                        lat: 40.753984,
+                        lng: -73.977464
+                    }
+                }, {
+                    title: 'The Interpid',
+                    location: {
+                        lat: 40.76473,
+                        lng: -74.000001
+                    }
+                }, {
+                    title: 'Statue of Liberty',
+                    location: {
+                        lat: 40.69005,
+                        lng: -74.045068
+                    }
+                }, {
+                    title: 'Ellis Island',
+                    location: {
+                        lat: 40.699472,
+                        lng: -74.03956
+                    }
+                }, {
+                    title: 'Central Park South Entrance',
+                    location: {
+                        lat: 40.771133,
+                        lng: -73.974187
+                    }
+                }, {
+                    title: 'Little Italy',
+                    location: {
+                        lat: 40.719141,
+                        lng: -73.997327
+                    }
+                }, {
+                    title: 'Chinatown',
+                    location: {
+                        lat: 40.715751,
+                        lng: -73.997031
+                    }
+                }];
+
+                var largeInfoWindow = new google.maps.InfoWindow();
+
+                for (var i = 0; i < locations.length; i++) {
+                    var position = locations[i].location;
+                    var title = locations[i].title;
+                    var marker = new google.maps.Marker({
+                        position: position,
+                        title: title,
+                        animation: google.maps.Animation.DROP,
+                        id: i
+                    });
+
+                    markers.push(marker);
+
+                    marker.addListener('click', function() {
+                        populateInfoWindow(this, largeInfoWindow);
+                    });
+                }
+                document.getElementById('show-listings').addEventListener('click', showListings);
+                document.getElementById('hide-listings').addEventListener('click', hideListings);
+            }
+
+            function populateInfoWindow(marker, infowindow) {
+                if (infowindow.marker != marker) {
+                    infowindow.marker = marker;
+                    infowindow.setContent('<div>' + marker.title + '</div>');
+                    infowindow.open(map, marker);
+
+                    infowindow.addListener('closeClick', function() {
+                        infowindow.setMarker(null);
+                    });
+                }
+            }
+
+            function showListings() {
+                var bounds = new google.maps.LatLngBounds();
+
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(map);
+                    bounds.extend(markers[i].position);
+                }
+                map.fitBounds(bounds);
+            }
+
+            function hideListings() {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(null);
+                }
+            }
+        </script>
 
 
-
-        <link async rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="print"/>
-        <script async src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script async src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script async src="bower_components/knockout/dist/knockout.js"></script>
-        <script async src="js/app.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4Sx-EmG0FVrUBwkOuk9Btwv2cW3jjuZg&v=3&callback=initMap">
+        </script>
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!--<<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+        <script src="js/app.js"></script>-->
     </body>
     <footer>
         <p>&copy; https://github.com/rlugojr 2016</p>
     </footer>
+
 </html>
