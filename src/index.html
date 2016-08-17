@@ -37,34 +37,34 @@
             function initMap() {
 
                 var styles = [{
-                    "featureType": "road.highway",
-                    "elementType": "labels",
-                    "stylers": [{
-                        "visibility": "on"
+                    featureType: "road.highway",
+                    elementType: "labels",
+                    stylers: [{
+                        visibility: "on"
                     }]
                 }, {
-                    "featureType": "road.arterial",
-                    "elementType": "labels.text",
-                    "stylers": [{
-                        "visibility": "on"
+                    featureType: "road.arterial",
+                    elementType: "labels.text",
+                    stylers: [{
+                        visibility: "on"
                     }]
                 }, {
-                    "featureType": "road.local",
-                    "elementType": "labels.text",
-                    "stylers": [{
-                        "visibility": "on"
+                    featureType: "road.local",
+                    elementType: "labels.text",
+                    stylers: [{
+                        visibility: "on"
                     }]
                 }, {
-                    "featureType": "water",
-                    "elementType": "geometry.fill",
-                    "stylers": [{
-                        "color": "#0099dd"
+                    featureType: "water",
+                    elementType: "geometry.fill",
+                    stylers: [{
+                        color: "#0099dd"
                     }]
                 }, {
-                    "featureType": "poi.park",
-                    "elementType": "geometry.fill",
-                    "stylers": [{
-                        "color": "#aadd55"
+                    featureType: "poi.park",
+                    elementType: "geometry.fill",
+                    stylers: [{
+                        color: "#aadd55"
                     }]
                 }, {
                     featureType: 'administrative',
@@ -312,12 +312,13 @@
 
             function populateInfoWindow(marker, infowindow) {
                 if (infowindow.marker != marker) {
-                    infowindow.marker = marker;
 
                     infowindow.setContent('');
-                    infowindow.open(map, marker);
+                    infowindow.marker = marker;
 
-                    infowindow.addListener('closeClick', function() {
+                    //infowindow.open(map, marker);
+
+                    infowindow.addListener('closeclick', function() {
                         infowindow.marker = null;
                     });
                     var streetViewService = new google.maps.StreetViewService();
@@ -338,7 +339,7 @@
                             };
                             var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
                         } else {
-                            infowindow.setContent('<div>' + marker.title + '</div><div>No Street View Found');
+                            infowindow.setContent('<div>' + marker.title + '</div><div>No Street View Found</div>');
                         }
                     }
                     streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
@@ -400,8 +401,8 @@
 
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4Sx-EmG0FVrUBwkOuk9Btwv2cW3jjuZg&libraries=drawing,geometry&v=3&callback=initMap">
         </script>
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
         <!--<<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
         <script src="js/app.js"></script>-->
